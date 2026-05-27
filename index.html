@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Prediksi Diabetes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Animasi sederhana untuk transisi halaman */
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-blue-600">DiaCare AI</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="showSection('beranda')" class="text-slate-600 hover:text-blue-600 font-medium px-3 py-2 rounded-md">Beranda</button>
+                    <button onclick="showSection('dashboard')" class="text-slate-600 hover:text-blue-600 font-medium px-3 py-2 rounded-md">Dashboard</button>
+                    <button onclick="showSection('prediksi')" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg shadow transition">Mulai Prediksi</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <section id="beranda" class="fade-in">
+            <div class="text-center py-20">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">Deteksi Dini Risiko Diabetes Anda</h1>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-8">Sistem cerdas bertenaga Machine Learning untuk menganalisis metrik kesehatan dan memprediksi status glikemik secara akurat.</p>
+                <button onclick="showSection('prediksi')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg text-lg transition">Cek Sekarang</button>
+            </div>
+        </section>
+
+        <section id="dashboard" class="fade-in hidden">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">Dashboard Statistik</h2>
+            <div class="bg-white p-2 rounded-xl shadow-md w-full h-[800px]">
+                <iframe width="100%" height="100%" src="https://lookerstudio.google.com/embed/reporting/KODE_ANDA" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section id="prediksi" class="fade-in hidden">
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-md border border-slate-100">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6 border-b pb-4">Form Analisis Klinis</h2>
+                
+                <form id="formPrediksi" class="space-y-8">
+                    
+                    <div>
+                        <h3 class="text-sm font-bold text-blue-600 uppercase tracking-wider mb-4 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-blue-600"></span> Tekanan Darah & Skrining Darah
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Tekanan Darah Sistolik (Bpsys)</label>
+                                <input type="number" id="Bpsys" step="0.1" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50/50 font-medium text-sm transition" placeholder="Contoh: 120.0" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Tekanan Darah Diastolik (Bpdia)</label>
+                                <input type="number" id="Bpdia" step="0.1" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50/50 font-medium text-sm transition" placeholder="Contoh: 80.0" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Abnormal Blood Pressure (BP13085)</label>
+                                <select id="BP13085" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50/50 font-medium text-sm transition">
+                                    <option value="0">Normal</option>
+                                    <option value="1">Abnormal (≥ 130/85 mmHg)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Hipertensi WHO 1999 (WHO1999hbp)</label>
+                                <select id="WHO1999hbp" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50/50 font-medium text-sm transition">
+                                    <option value="0">Normal</option>
+                                    <option value="1">Hipertensi</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Skrining Awal Thalassemia (ThalussemiaAND)</label>
+                                <select id="ThalussemiaAND" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50/50 font-medium text-sm transition">
+                                    <option value="0">Normal</option>
+                                    <option value="1">Suspected (Dicurigai)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-100 pt-6">
+                        <h3 class="text-sm font-bold text-blue-600 uppercase tracking-wider mb-4 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-blue-600"></span> Pemeriksaan Laboratorium & Indeks Klinis
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Glycated Albumin (GA %)</label>
+                                <input type="number" id="GA" step="0.01" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50/50 font-medium text-sm transition" placeholder="Contoh: 14.5" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Segmentasi HbA1c (A1cover6575)</label>
+                                <select id="A1cover6575" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50/50 font-medium text-sm transition">
+                                    <option value="1">&lt; 6.5</option>
+                                    <option value="2">6.5 s/d 7.5</option>
+                                    <option value="3">&gt; 7.5</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Indeks Sensitivitas Insulin (ISI Gutt)</label>
+                                <input type="number" id="ISIGutt" step="0.001" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50/50 font-medium text-sm transition" placeholder="Contoh: 5.0" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Resistensi Insulin (HOMA-IR)</label>
+                                <input type="number" id="HomaIR" step="0.001" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50/50 font-medium text-sm transition" placeholder="Contoh: 2.0" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Fungsi Sel Beta (HOMA-β)</label>
+                                <input type="number" id="Homaβ" step="0.001" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50/50 font-medium text-sm transition" placeholder="Contoh: 80.0" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Insulin 2 Jam PP (INS2h)</label>
+                                <input type="number" id="INS2h" step="0.1" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50/50 font-medium text-sm transition" placeholder="Contoh: 40.0" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">C-Peptide 2 Jam PP (CP2h)</label>
+                                <input type="number" id="CP2h" step="0.01" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50/50 font-medium text-sm transition" placeholder="Contoh: 2.0" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Enzim Hati GGT</label>
+                                <input type="number" id="GGT" step="0.1" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50/50 font-medium text-sm transition" placeholder="Contoh: 20.0" required>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">FIB-4 Categorization (FIB4n)</label>
+                                <select id="FIB4n" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50/50 font-medium text-sm transition">
+                                    <option value="0">&lt; 1.45</option>
+                                    <option value="1">≥ 1.45</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-100">
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-200 text-base tracking-wide">
+                            Jalankan Komputasi Diagnosa AI
+                        </button>
+                    </div>
+                </form>
+
+                <div id="hasilArea" class="mt-8 hidden p-6 rounded-lg border">
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">Hasil Diagnosa Sistem:</h3>
+                    <div id="loading" class="text-blue-600 font-medium hidden">Memproses data...</div>
+                    <div id="teksHasil" class="text-2xl font-extrabold"></div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Fungsi untuk Navigasi SPA
+        function showSection(sectionId) {
+            document.getElementById('beranda').classList.add('hidden');
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('prediksi').classList.add('hidden');
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        // Fungsi Menangani Submit Form
+        document.getElementById('formPrediksi').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Mencegah form reload halaman
+
+            const hasilArea = document.getElementById('hasilArea');
+            const teksHasil = document.getElementById('teksHasil');
+            const loading = document.getElementById('loading');
+            
+            hasilArea.classList.remove('hidden');
+            loading.classList.remove('hidden');
+            teksHasil.innerHTML = '';
+
+            const dataInput = {
+                ISIGutt: parseFloat(document.getElementById('ISIGutt').value),
+                Homaβ: parseFloat(document.getElementById('Homaβ').value),
+                A1cover6575: parseFloat(document.getElementById('A1cover6575').value),
+                ThalussemiaAND: parseFloat(document.getElementById('ThalussemiaAND').value),
+                GA: parseFloat(document.getElementById('GA').value),
+                INS2h: parseFloat(document.getElementById('INS2h').value),
+                HomaIR: parseFloat(document.getElementById('HomaIR').value),
+                Bpdia: parseFloat(document.getElementById('Bpdia').value),
+                CP2h: parseFloat(document.getElementById('CP2h').value),
+                Bpsys: parseFloat(document.getElementById('Bpsys').value),
+                BP13085: parseFloat(document.getElementById('BP13085').value),
+                FIB4n: parseFloat(document.getElementById('FIB4n').value),
+                WHO1999hbp: parseFloat(document.getElementById('WHO1999hbp').value),
+                GGT: parseFloat(document.getElementById('GGT').value)
+            };
+
+            try {
+                // Tembak API Flask
+                const response = await fetch('http://127.0.0.1:5000/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dataInput)
+                });
+
+                const result = await response.json();
+                loading.classList.add('hidden');
+
+                if(result.status === 'success') {
+                    // Tampilkan Hasil dengan Warna Berbeda
+                    let warna = "text-green-600";
+                    if(result.prediksi_label === "Prediabetes") warna = "text-yellow-600";
+                    if(result.prediksi_label === "Diabetes") warna = "text-red-600";
+
+                    teksHasil.className = `text-3xl font-extrabold ${warna}`;
+                    teksHasil.innerHTML = result.prediksi_label;
+                } else {
+                    teksHasil.className = "text-red-500 text-lg";
+                    teksHasil.innerHTML = "Error: " + result.message;
+                }
+
+            } catch (error) {
+                loading.classList.add('hidden');
+                teksHasil.className = "text-red-500 text-lg";
+                teksHasil.innerHTML = "Gagal terhubung ke Server AI. Pastikan file app.py berjalan.";
+            }
+        });
+    </script>
+</body>
+</html>
