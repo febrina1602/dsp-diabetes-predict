@@ -574,6 +574,40 @@
     .form-body { padding: 1.5rem; }
     main { padding: 1rem; }
   }
+  .prob-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px dashed var(--border-strong);
+  }
+  .prob-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 8px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .prob-card-title {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+  }
+  .prob-card-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .prob-val-normal { color: var(--green-500); }
+  .prob-val-prediabetes { color: var(--amber-400); }
+  .prob-val-diabetes { color: var(--red-400); }
+
+  
 </style>
 </head>
 <body>
@@ -850,6 +884,25 @@
         if (label === 'Prediabetes') { cls='result-prediabetes'; icon='⚠️'; desc='Kadar glikemik di atas normal — perlu pemantauan lebih lanjut.'; }
         if (label === 'Diabetes')    { cls='result-diabetes';    icon='🔴'; desc='Kadar glikemik tinggi — disarankan konsultasi dengan dokter segera.'; }
 
+        // MENGAMBIL ARRAY PROBABILITAS DARI FLASK API
+        const prob = result.probabilitas;
+        const probHtml = `
+          <div class="prob-grid">
+            <div class="prob-card">
+              <div class="prob-card-title">Normal</div>
+              <div class="prob-card-value prob-val-normal">${(prob[0] * 100).toFixed(1)}%</div>
+            </div>
+            <div class="prob-card">
+              <div class="prob-card-title">Pre-Diabetes</div>
+              <div class="prob-card-value prob-val-prediabetes">${(prob[1] * 100).toFixed(1)}%</div>
+            </div>
+            <div class="prob-card">
+              <div class="prob-card-title">Diabetes</div>
+              <div class="prob-card-value prob-val-diabetes">${(prob[2] * 100).toFixed(1)}%</div>
+            </div>
+          </div>
+        `;
+
         hasilBody.innerHTML = `
           <div class="${cls}">
             <div class="result-icon">${icon}</div>
@@ -857,7 +910,9 @@
               <div class="result-label">${label}</div>
               <div class="result-desc">${desc}</div>
             </div>
-          </div>`;
+          </div>
+          ${probHtml}
+        `;
       } else {
         hasilBody.innerHTML = `<div class="result-error">⚠️ ${result.message || 'Terjadi kesalahan pada server.'}</div>`;
       }
