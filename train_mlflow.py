@@ -15,7 +15,6 @@ from imblearn.over_sampling import SMOTE
 
 warnings.filterwarnings('ignore')
 
-# INISIALISASI DAGSHUB & MLFLOW
 dagshub.init(repo_owner='febrina1602', repo_name='dsp-diabetes-predict', mlflow=True)
 
 mlflow.set_experiment("Diabetes_Prediction_RandomForest")
@@ -77,7 +76,7 @@ if __name__ == "__main__":
     smote = SMOTE(random_state=42)
     X_train_smote, y_train_smote = smote.fit_resample(X_train, y_train)
 
-    # 14 Fitur Pilihan
+    # Fitur Pilihan
     top_14_features = [
         'ISIGutt', 'Homa¦Â', 'A1cover6575', 'ThalussemiaAND', 'GA', 
         'INS2h', 'HomaIR', 'Bpdia', 'CP2h', 'Bpsys', 'BP13085', 

@@ -50,7 +50,6 @@
     color: var(--text-primary);
   }
 
-  /* ========= NAV ========= */
   nav {
     background: var(--white);
     border-bottom: 1px solid var(--border);
@@ -126,7 +125,6 @@
     box-shadow: 0 4px 14px rgba(15,91,181,0.35);
   }
 
-  /* ========= LAYOUT ========= */
   main {
     max-width: 1300px;
     margin: 0 auto;
@@ -139,7 +137,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ========= BERANDA ========= */
   .hero {
     background: linear-gradient(135deg, var(--blue-800) 0%, var(--blue-600) 55%, var(--blue-500) 100%);
     border-radius: var(--radius-lg);
@@ -229,7 +226,6 @@
     box-shadow: 0 8px 28px rgba(0,0,0,0.2);
   }
 
-  /* Feature cards */
   .feature-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -270,7 +266,6 @@
     line-height: 1.55;
   }
 
-  /* Info banner */
   .info-banner {
     background: var(--blue-50);
     border: 1px solid var(--blue-100);
@@ -285,7 +280,6 @@
   .info-banner-text { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
   .info-banner-text strong { color: var(--blue-600); }
 
-  /* ========= DASHBOARD ========= */
   .section-head {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 13px;
@@ -327,7 +321,6 @@
     border: none;
   }
 
-  /* ========= PREDIKSI FORM ========= */
   .form-outer {
     max-width: 860px;
     margin: 0 auto;
@@ -564,7 +557,6 @@
     gap: 8px;
   }
 
-  /* ========= RESPONSIVE ========= */
   @media (max-width: 900px) {
     .feature-grid { grid-template-columns: 1fr; }
     .form-grid { grid-template-columns: 1fr; }
@@ -629,7 +621,7 @@
 
 <main>
 
-  <!-- ===== BERANDA ===== -->
+  <!-- BERANDA -->
   <section id="beranda" class="active">
 
     <div class="hero">
@@ -686,7 +678,7 @@
 
   </section>
 
-  <!-- ===== DASHBOARD ===== -->
+  <!-- DASHBOARD -->
   <section id="dashboard">
     <div class="page-title">Dashboard Analitik</div>
     <div class="page-subtitle">Visualisasi data epidemiologi dan distribusi biomarker dataset diabetes penelitian</div>
@@ -695,7 +687,7 @@
     </div>
   </section>
 
-  <!-- ===== PREDIKSI ===== -->
+  <!-- PREDIKSI -->
   <section id="prediksi">
     <div class="form-outer">
       <div class="page-title">Form Analisis Klinis</div>
@@ -710,7 +702,7 @@
         <div class="form-body">
           <form id="formPrediksi">
 
-            <!-- Bagian 1: Tekanan Darah & Skrining Darah -->
+            <!-- Tekanan Darah & Skrining Darah -->
             <div class="form-section">
               <div class="form-section-title">Tekanan Darah &amp; Skrining Darah</div>
               <div class="form-grid">
@@ -752,7 +744,7 @@
               </div>
             </div>
 
-            <!-- Bagian 2: Lab & Indeks Klinis -->
+            <!-- Lab & Indeks Klinis -->
             <div class="form-section">
               <div class="form-section-title">Pemeriksaan Laboratorium &amp; Indeks Klinis</div>
               <div class="form-grid">
@@ -807,7 +799,6 @@
             </div>
 
             <button type="submit" class="submit-btn">
-              <span class="submit-btn-icon">🧬</span>
               Jalankan Komputasi Diagnosa AI
             </button>
 
