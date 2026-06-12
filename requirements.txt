@@ -1,0 +1,10 @@
+Flask
+Flask-Cors
+pandas
+numpy
+joblib
+scikit-learn==1.8.0
+imbalanced-learn
+mlflow
+dagshub
+gunicorn

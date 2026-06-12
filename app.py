@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import joblib
 import pandas as pd
@@ -9,6 +9,10 @@ CORS(app) #  HTML menembak API ini
 model = joblib.load('rf_diabetes_14features.pkl')
 scaler = joblib.load('scaler_14features.pkl')
 fitur_penting = joblib.load('top_14_features_list.pkl')
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
